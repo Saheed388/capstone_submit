@@ -1,60 +1,63 @@
-I am delving into YouTube data as my capstone project with the goal of launching my own channel. By analyzing the available data, I aim to gain insights on optimal strategies for starting, attracting viewers, and garnering subscribers for my YouTube channel.
+I am currently engaged in a comprehensive exploration of YouTube data for my capstone project, with the ultimate objective of launching my own channel. Through a meticulous analysis of the available data, I aspire to extract valuable insights pertaining to optimal strategies for channel initiation, audience attraction, and subscriber acquisition on the YouTube platform.
 
-Project Description 
+Project Description
 
-STAGE ONE:
-Data flow Architecture which was desgign using draw.io and can be found in the Screeshot folder Tittled Project architecture
+STAGE ONE: Data Flow Architecture
+The data flow architecture, meticulously designed using draw.io, is accessible in the Screenshot folder under the title "Project Architecture."
 
-STAGE TWO:
-1. I search for the Youtube documentation went to create the developer account the get the api key
-2. Note dow the column i thing i will need base the available features on the vebsise
--- Website : Youtube.com
-3. Search for the endpoint where i will get my datas from
---  search_url = "https://www.googleapis.com/youtube/v3/search"
-    video_url = "https://www.googleapis.com/youtube/v3/videos"
-    channels_url = "https://www.googleapis.com/youtube/v3/channels"
-4. I wrote a code to extract the data to be saved as a csv file on my local maching which the columns are
+STAGE TWO: Data Acquisition from YouTube API
 
-   --comments,
-   --  likes,
-   -- duration,
-   -- views,
-   --`channel name` , 
-   -- `date posted` , 
-   --subscribers,
-   -- `video title` as video_title 
+Conducted a thorough investigation of YouTube documentation to establish a developer account and obtain the necessary API key.
+Identified and documented the essential columns based on the available features on the website (Youtube.com).
+Discovered relevant API endpoints, including search_url, video_url, and channels_url.
+Developed a code to extract pertinent data, such as comments, likes, duration, views, channel name, date posted, subscribers, and video title, which was subsequently saved as a CSV file on the local machine.
 
-STAGE THREE:
-1. I downloaded and installed Docker desktop
-2. I deployed Postgres and Pgadming on Docker which can be find in Posgres folder
-3  I delpoyed airflow using Asrtonomer way of deloyment
+STAGE THREE: Infrastructure Setup
 
-STAGE FOUR:
-1. i developed a code the extract data from the Youtube api and stored it on PosgresSQL
-2. The file can be found in the folder titled Youtube_to_psql.py and load_youtube_to_psql.py
-3. Used a hook method to give the airflow permission to access the Postgresql
-4. The data was moved succeefully
+Installed Docker Desktop.
+Deployed Postgres and PgAdmin on Docker (refer to the Postgres folder).
+Implemented the deployment of Airflow using the Astronomer method.
+STAGE FOUR: Data Movement to PostgresSQL
 
-STAGE FOUR:
-1. Set up a Google cloud platform 
-2. creates a bucket and a bigquerry
-3. Granted the required permition to using the Iam the downloaded it as a json file.
+Developed code to extract data from the YouTube API and store it in PostgresSQL.
+Files for this process can be found in the folder titled "Youtube_to_psql.py" and "load_youtube_to_psql.py."
+Utilized a hook method to grant Airflow permission to access Postgresql, ensuring successful data transfer.
+STAGE FIVE: Google Cloud Platform Integration
 
-STAGE FIVE:
-1. Developed a code to extract the data fropm psql and moved to GC Bucket and Bigquerry
-2. The files can be found in the folder titled extract_from_psql_dag
-3. Used a hook method to give the airflow permission to access the GCP
-4. The data was moved succeefully
+Established a Google Cloud Platform setup.
+Created a bucket and a BigQuery.
+Granted the necessary permissions through Iam and downloaded them as a JSON file.
+STAGE SIX: Data Transformation and Modeling with DBT
 
-STAGE SIX:
-1. I install Data Build Tool on my local machine which i made some installions via extenstions like YAML, Better Jinja , Git Ignore
-2. So i create a project_foldel and have all my reqired 
-3. In my model folder i have 3 folder called Staging , Intermidiate and Marts folde
-4. I created a connection from DBT to Bigquerry
-5. I brought the data to the staging  , file tittled stg_youtube.sql
-6. Create a star schema in the intermidaite folder tittled int_video_fact_data.sql, int_video_dimentional_data.sql, int_date_dimentional_table.sql and also create their yml file for the tables full descriptions
-7. i created a marts file solvin some problems
- -- The query  that retrieve the total views, total comment, and the difference between total views and total comment for each channel from the specified video fact and dimensional data sources, grouping the results by channel_fact_id and ordering them by total views in descending order.
+Installed Data Build Tool (DBT) on the local machine, making necessary installations via extensions (YAML, Better Jinja, Git Ignore).
+Organized a project folder with required components.
+Established a connection from DBT to BigQuery.
+Modeled data with staging, intermediate, and mart folders.
+Created a star schema in the intermediate folder and developed associated YAML files for table descriptions.
+Resolved various issues by creating mart tables, including queries for total views, likes, subscribers, and video upload statistics.
+STAGE SEVEN: Deployment and Integration
+
+Deployed the project to DBT Cloud.
+Created a job for execution.
+Established a hook for connectivity, integrating Airflow to execute the DBT job seamlessly.
+Successfully executed all jobs using Airflow.
+For additional details, visual representations, and lineage information, please refer to the respective folders and files mentioned throughout the stages.
+
+SUMMARY
+
+Successfully constructed an Airflow pipeline, hosted on Astronomer, to extract data from the YouTube API endpoint. The data was loaded into PostgreSQL and simultaneously transferred from the API endpoint to a Google Cloud (GC) bucket and then to BigQuery. Utilized Dbt for comprehensive transformation and analysis. Deployed the processed data to Dbt Cloud, and executed Dbt Cloud jobs seamlessly within the Airflow environment.
+
+CONCLUSION
+
+In conclusion, the implemented Airflow pipeline, orchestrated on Astronomer, demonstrated a robust and flexible solution for handling data extraction, transformation, and loading (ETL) processes. The seamless integration with the YouTube API allowed for efficient extraction of data, which was then seamlessly loaded into both PostgreSQL and Google Cloud resources.
+
+The parallel loading of data from the API endpoint to a Google Cloud bucket and subsequently to BigQuery showcased the versatility of the pipeline, catering to different storage and processing needs. The incorporation of Dbt for data transformation and analysis further enriched the pipeline, providing a powerful layer for shaping and understanding the data.
+
+Deploying the processed data to Dbt Cloud extended the capabilities of the pipeline, enabling the execution of Dbt Cloud jobs directly within the Airflow environment. This integration not only streamlined the workflow but also facilitated the execution of comprehensive data transformations and analytics in a cloud-native environment.
+
+Overall, the successful implementation of this end-to-end pipeline highlights the efficacy of Airflow, Astronomer, and Dbt in orchestrating and optimizing complex data workflows, from extraction to analysis, in a scalable and efficient manner.
+
+
 
 
 
